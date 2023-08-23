@@ -29,7 +29,7 @@ elif [ "$CI_COMMIT_BRANCH" == "int" ]; then
     echo "ENV_HOST_IP=$INT_ENV_HOST_IP" >> $GITHUB_ENV
     echo "MONGODB__DATABASE_NAME=$NT_MONGODB__DATABASE_NAME" >> $GITHUB_ENV
     echo "AZURESTORAGE__CONTAINER_NAME=$NT_AZURESTORAGE__CONTAINER_NAME" >> $GITHUB_ENV
-elif [ "$CI_COMMIT_BRANCH" == "master" ]; then
+elif [ "$CI_COMMIT_BRANCH" == "prod" ]; then
     echo "Setting Host IP to  $PROD_ENV_HOST_IPfor master branch"
     echo "ENV_HOST_IP=$PROD_ENV_HOST_IP" >> $GITHUB_ENV
     echo "MONGODB__DATABASE_NAME=$PROD_MONGODB__DATABASE_NAME" >> $GITHUB_ENV
