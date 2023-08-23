@@ -113,51 +113,42 @@ name: Install Packages
 inputs:
   python_packages:
     description: 'Python packages to install'
-    required: true
+    required: false
   apt_packages:
     description: 'APT packages to install'
-    required: true
+    required: false
   npm_packages:
     description: 'NPM packages to install'
-    required: true
-  requirements_files:
+    required: false
+  requirements_file:
     description: 'Paths to requirements files'
     required: false
-    default: 'requirements.txt'
+  test_requirements_file:
+    description: 'Paths to requirements files'
+    required: false
 
 runs:
   using: 'composite'
+  steps:
     - name: Install Python Packages
-      run: |
-        if [ -n "${{ inputs.python_packages }}" ]; then
-          python_pkgs=(${{ inputs.python_packages }})
-          pip install --upgrade pip "${python_pkgs[@]}"
-        fi
+      run: python -m pip install --upgrade pip ${{ inputs.python_packages }}
       shell: bash
 
     - name: Install APT Packages
       run: |
-        if [ -n "${{ inputs.apt_packages }}" ]; then
-          apt_pkgs=(${{ inputs.apt_packages }})
-          sudo apt-get update
-          sudo apt-get install -y "${apt_pkgs[@]}"
-        fi
+        sudo apt-get update
+        sudo apt-get install -y ${{ inputs.apt_packages }}
       shell: bash
 
     - name: Install NPM Packages
-      run: |
-        if [ -n "${{ inputs.npm_packages }}" ]; then
-          npm_pkgs=(${{ inputs.npm_packages }})
-          npm install -g "${npm_pkgs[@]}"
-        fi
+      run: npm install -g ${{ inputs.npm_packages }}
       shell: bash
 
     - name: Install Python Requirements
       run: |
-        if [ -n "${{ inputs.requirements_files }}" ]; then
-          req_files=(${{ inputs.requirements_files }})
-          for req_file in "${req_files[@]}"; do
-            pip install -r "$req_file"
-          done
-        fi
+        pip install -r ${{ inputs.requirements_file }}
       shell: bash
+    
+    - name: Install Python Requirements
+      run: |
+        pip install -r ${{ inputs.test_requirements_file }}
