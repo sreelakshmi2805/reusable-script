@@ -120,6 +120,10 @@ inputs:
   npm_packages:
     description: 'NPM packages to install'
     required: true
+  requirements_files:
+    description: 'Paths to requirements files'
+    required: false
+    default: 'requirements.txt'
 
 runs:
   using: 'composite'
@@ -136,4 +140,14 @@ runs:
 
     - name: Install NPM Packages
       run: npm install -g ${{ inputs.npm_packages }}
+      shell: bash
+
+    - name: Install Python Requirements
+      run: |
+        if [ -n "${{ inputs.requirements_files }}" ]; then
+          IFS=',' read -ra req_files <<< "${{ inputs.requirements_files }}"
+          for req_file in "${req_files[@]}"; do
+            pip install -r "$req_file"
+          done
+        fi
       shell: bash
