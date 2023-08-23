@@ -19,6 +19,6 @@ echo "ip is $DEV_ENV_HOST_IP"
 # echo "Debug: ENV_HOST_IP=$ENV_HOST_IP"
 
 # # Export the environment variables
-# echo "ENV_HOST_IP=$ENV_HOST_IP" >> $GITHUB_ENV
+echo "ENV_HOST_IP=$DEV_ENV_HOST_IP" >> $GITHUB_ENV
 
 # echo "Debug: ENV_HOST_IP=$ENV_HOST_IP"
