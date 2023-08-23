@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
-DEV_ENV_HOST_IP=$dev_env_host_ip
-echo "ip is $DEV_ENV_HOST_IP"
+dev_env_host_ip="$dev_env_host_ip"
+echo "ip is $dev_env_host_ip"
 
 # while [[ $# -gt 0 ]]; do
 #   case "$1" in

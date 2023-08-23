@@ -6,6 +6,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 ENV dev_env_host_ip=$dev_env_host_ip
 
+
 RUN chmod +x /entrypoint.sh
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
