@@ -1,7 +1,22 @@
 #!/bin/sh -l
 
-DEV_ENV_HOST_IP=$1
-echo "ip is $DEV_ENV_HOST_IP"
+# DEV_ENV_HOST_IP=$1
+# echo "ip is $DEV_ENV_HOST_IP"
+
+# while [[ $# -gt 0 ]]; do
+#   case "$1" in
+#     *=*)
+#       varname="${1%%=*}"
+#       value="${1#*=}"
+#       export "$varname=$value"
+#       ;;
+#   esac
+#   shift
+# done
+
+dev_env_host_ip="$dev_env_host_ip"
+echo "ip is $dev_env_host_ip" 
+
 # time=$(date)
 # echo "time=$time" >> $GITHUB_OUTPUT
 
@@ -19,6 +34,6 @@ echo "ip is $DEV_ENV_HOST_IP"
 # echo "Debug: ENV_HOST_IP=$ENV_HOST_IP"
 
 # # Export the environment variables
-echo "ENV_HOST_IP=$DEV_ENV_HOST_IP" >> $GITHUB_ENV
+echo "ENV_HOST_IP=$ENV_HOST_IP" >> $GITHUB_ENV
 
 # echo "Debug: ENV_HOST_IP=$ENV_HOST_IP"
