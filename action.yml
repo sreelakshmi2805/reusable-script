@@ -145,10 +145,10 @@ runs:
       shell: bash
 
     - name: Install Python Requirements
-      run: |
-        pip install -r ${{ inputs.requirements_file }}
+      run: pip install -r ${{ inputs.requirements_file }}
       shell: bash
     
     - name: Install Python Requirements
       run: |
         pip install -r ${{ inputs.test_requirements_file }}
+      shell: bash
