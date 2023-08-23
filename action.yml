@@ -26,8 +26,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    - name: dev_env_host_ip
-      value: ${{ inputs.dev_env_host_ip }}
+    - dev_env_host_ip: ${{ inputs.dev_env_host_ip }}
+    
   args:
     - ${{ inputs.dev_env_host_ip }}
 
