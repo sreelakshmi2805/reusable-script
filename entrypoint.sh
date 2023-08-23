@@ -1,10 +1,10 @@
 #!/bin/sh -l
 
-# echo "Hello $1"
+echo "Hello $1"
 # time=$(date)
 # echo "time=$time" >> $GITHUB_OUTPUT
 
-export DEV_ENV_HOST_IP=$1
+# export DEV_ENV_HOST_IP=$1
 
 # if [ "$CI_COMMIT_BRANCH" = "master" ]; then
 #   echo "Setting Host IP to $DEV_ENV_HOST_IP for master branch"
@@ -14,7 +14,7 @@ export DEV_ENV_HOST_IP=$1
 #   export ENV_HOST_IP="$INT_ENV_HOST_IP"
 # fi
 
-echo "Branch is $1"
+# echo "ip is $1"
 # echo "Debug: ENV_HOST_IP=$ENV_HOST_IP"
 
 # # Export the environment variables
