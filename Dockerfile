@@ -5,7 +5,7 @@ FROM alpine:3.10
 COPY entrypoint.sh /entrypoint.sh
 
 
-ENV dev_env_host_ip="1111"
+# ENV dev_env_host_ip="1111"
 
 
 RUN chmod +x /entrypoint.sh
