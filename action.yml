@@ -1,62 +1,85 @@
-name: 'Set env variable for host'
-description: 'Set env variable for host'
-inputs:
-  CI_COMMIT_BRANCH:
-    description: 'Commit branch'
-    required: true
-  DEV_ENV_HOST_IP:
-    description: 'Host IP for the dev env'
-    required: false
-  DEV_MONGODB__DATABASE_NAME :
-    description: 'Mongodb database name for dev env'
-    required: false
-  DEV_AZURESTORAGE__CONTAINER_NAME:
-    description: 'Azure storage container name for dev env'
-    required: false
-  INT_ENV_HOST_IP:
-    description: 'Host IP for the int env'
-    required: false
-  INT_MONGODB__DATABASE_NAME:
-    description: 'Mongodb database name for int env'
-    required: false
-  INT_AZURESTORAGE__CONTAINER_NAME:
-    description: 'Azure storage container name for int env'
-    required: false
-  PROD_ENV_HOST_IP:
-    description: 'Host IP for the prod env'
-    required: false
-  PROD_MONGODB__DATABASE_NAME:
-    description: 'Mongodb database name for prod env'
-    required: false
-  PROD_AZURESTORAGE__CONTAINER_NAME:
-    description:  'Azure storage container name for prod env'
-    required: false
-  STAGING_ENV_HOST_IP:
-    description: 'Host IP for the staging branch'
-    required: false
-  STAGING_MONGODB__DATABASE_NAME:
-    description: 'Mongodb database name for staging env'
-    required: false
-  STAGING_AZURESTORAGE__CONTAINER_NAME:
-    description: 'Azure storage container name for staging env'
-    required: false
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  env:
-    CI_COMMIT_BRANCH: ${{ inputs.CI_COMMIT_BRANCH }}
-    DEV_ENV_HOST_IP: ${{ inputs.DEV_ENV_HOST_IP }}
-    DEV_MONGODB__DATABASE_NAME : ${{ inputs.DEV_MONGODB__DATABASE_NAME }}
-    DEV_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.DEV_AZURESTORAGE__CONTAINER_NAME }}
-    INT_ENV_HOST_IP: ${{ inputs.INT_ENV_HOST_IP }}
-    INT_MONGODB__DATABASE_NAME: ${{ inputs.INT_MONGODB__DATABASE_NAME }}
-    INT_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.INT_AZURESTORAGE__CONTAINER_NAME }}
-    PROD_ENV_HOST_IP: ${{ inputs.PROD_ENV_HOST_IP }}
-    PROD_MONGODB__DATABASE_NAME: ${{ inputs.PROD_MONGODB__DATABASE_NAME }}
-    PROD_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.PROD_AZURESTORAGE__CONTAINER_NAME }}
-    STAGING_ENV_HOST_IP: ${{ inputs.STAGING_ENV_HOST_IP }}
-    STAGING_MONGODB__DATABASE_NAME: ${{ inputs.STAGING_MONGODB__DATABASE_NAME }}
-    STAGING_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.STAGING_AZURESTORAGE__CONTAINER_NAME }}
+# name: 'Set env variable for host'
+# description: 'Set env variable for host'
+# inputs:
+#   CI_COMMIT_BRANCH:
+#     description: 'Commit branch'
+#     required: true
+#   DEV_ENV_HOST_IP:
+#     description: 'Host IP for the dev env'
+#     required: false
+#   DEV_MONGODB__DATABASE_NAME :
+#     description: 'Mongodb database name for dev env'
+#     required: false
+#   DEV_AZURESTORAGE__CONTAINER_NAME:
+#     description: 'Azure storage container name for dev env'
+#     required: false
+#   INT_ENV_HOST_IP:
+#     description: 'Host IP for the int env'
+#     required: false
+#   INT_MONGODB__DATABASE_NAME:
+#     description: 'Mongodb database name for int env'
+#     required: false
+#   INT_AZURESTORAGE__CONTAINER_NAME:
+#     description: 'Azure storage container name for int env'
+#     required: false
+#   PROD_ENV_HOST_IP:
+#     description: 'Host IP for the prod env'
+#     required: false
+#   PROD_MONGODB__DATABASE_NAME:
+#     description: 'Mongodb database name for prod env'
+#     required: false
+#   PROD_AZURESTORAGE__CONTAINER_NAME:
+#     description:  'Azure storage container name for prod env'
+#     required: false
+#   STAGING_ENV_HOST_IP:
+#     description: 'Host IP for the staging branch'
+#     required: false
+#   STAGING_MONGODB__DATABASE_NAME:
+#     description: 'Mongodb database name for staging env'
+#     required: false
+#   STAGING_AZURESTORAGE__CONTAINER_NAME:
+#     description: 'Azure storage container name for staging env'
+#     required: false
+# runs:
+#   using: 'docker'
+#   image: 'Dockerfile'
+#   env:
+#     CI_COMMIT_BRANCH: ${{ inputs.CI_COMMIT_BRANCH }}
+#     DEV_ENV_HOST_IP: ${{ inputs.DEV_ENV_HOST_IP }}
+#     DEV_MONGODB__DATABASE_NAME : ${{ inputs.DEV_MONGODB__DATABASE_NAME }}
+#     DEV_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.DEV_AZURESTORAGE__CONTAINER_NAME }}
+#     INT_ENV_HOST_IP: ${{ inputs.INT_ENV_HOST_IP }}
+#     INT_MONGODB__DATABASE_NAME: ${{ inputs.INT_MONGODB__DATABASE_NAME }}
+#     INT_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.INT_AZURESTORAGE__CONTAINER_NAME }}
+#     PROD_ENV_HOST_IP: ${{ inputs.PROD_ENV_HOST_IP }}
+#     PROD_MONGODB__DATABASE_NAME: ${{ inputs.PROD_MONGODB__DATABASE_NAME }}
+#     PROD_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.PROD_AZURESTORAGE__CONTAINER_NAME }}
+#     STAGING_ENV_HOST_IP: ${{ inputs.STAGING_ENV_HOST_IP }}
+#     STAGING_MONGODB__DATABASE_NAME: ${{ inputs.STAGING_MONGODB__DATABASE_NAME }}
+#     STAGING_AZURESTORAGE__CONTAINER_NAME: ${{ inputs.STAGING_AZURESTORAGE__CONTAINER_NAME }}
 
+name: 'Hello World'
+description: 'Greet someone'
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo Hello ${{ inputs.who-to-greet }}.
+      shell: bash
+    - id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - run: goodbye.sh
+      shell: bash
   
 
