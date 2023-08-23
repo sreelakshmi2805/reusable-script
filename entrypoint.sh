@@ -1,7 +1,11 @@
 #!/bin/sh -l
 
-dev_env_host_ip="$dev_env_host_ip"
-echo "ip is $dev_env_host_ip"
+
+eval dynamic_variable_name="\$${dev_env_host_ip}"
+echo "ip is $dynamic_variable_name"
+
+# dev_env_host_ip="$dev_env_host_ip"
+# echo "ip is $dev_env_host_ip"
 
 # while [[ $# -gt 0 ]]; do
 #   case "$1" in
