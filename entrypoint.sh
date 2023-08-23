@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
-DEV_ENV_HOST_IP="$DEV_ENV_HOST_IP"
-echo "ip is $1"
+DEV_ENV_HOST_IP=$1
+echo "ip is $DEV_ENV_HOST_IP"
 # time=$(date)
 # echo "time=$time" >> $GITHUB_OUTPUT
 
