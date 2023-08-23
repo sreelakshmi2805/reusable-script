@@ -17,3 +17,5 @@ fi
 
 # Export the environment variables
 echo "ENV_HOST_IP=$ENV_HOST_IP" >> $GITHUB_ENV
+
+echo "Hello $1"

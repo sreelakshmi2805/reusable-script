@@ -26,6 +26,9 @@ inputs:
   DEV_ENV_HOST_IP:
     description: 'Host IP for the dev branch'
     required: false
+outputs:
+  ENV_HOST_IP: # id of output
+    description: 'env ip'
 
 runs:
   using: 'docker'
@@ -34,3 +37,6 @@ runs:
     - ${{ inputs.CI_COMMIT_BRANCH }}
     - ${{ inputs.INT_ENV_HOST_IP }}
     - ${{ inputs.DEV_ENV_HOST_IP }}
+
+  
+
