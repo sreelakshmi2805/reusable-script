@@ -14,8 +14,12 @@
 #   shift
 # done
 
-dev_env_host_ip="$dev_env_host_ip"
-echo "ip is $dev_env_host_ip" 
+# dev_env_host_ip="$dev_env_host_ip"
+# echo "ip is $dev_env_host_ip" 
+
+DEV_IP="dev_env_host_ip"
+DEV_ENV_IP="${!DEV_IP}"
+echo "ip is $DEV_ENV_IP"
 
 # time=$(date)
 # echo "time=$time" >> $GITHUB_OUTPUT
