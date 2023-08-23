@@ -1,37 +1,35 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
-    
-# name: 'set env variable for host'
-# description: 'set env variable for host'
+# name: 'Hello World'
+# description: 'Greet someone and record the time'
 # inputs:
-#   DEV_ENV_HOST_IP:
-#     description: 'Host IP for the dev branch'
-#     required: false
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
 # outputs:
-#   ENV_HOST_IP: # id of output
-#     description: 'env ip'
-
+#   time: # id of output
+#     description: 'The time we greeted you'
 # runs:
 #   using: 'docker'
 #   image: 'Dockerfile'
 #   args:
-#     - ${{ inputs.CI_COMMIT_BRANCH }}
-#     - ${{ inputs.INT_ENV_HOST_IP }}
-#     - ${{ inputs.DEV_ENV_HOST_IP }}
+#     - ${{ inputs.who-to-greet }}
+
+name: 'set env variable for host'
+description: 'set env variable for host'
+inputs:
+  DEV_ENV_HOST_IP:
+    description: 'Host IP for the dev branch'
+    required: false
+outputs:
+  ENV_HOST_IP: # id of output
+    description: 'env ip'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dev_env_host_ip }}
 
   
 
