@@ -3,16 +3,16 @@
 # DEV_ENV_HOST_IP=$1
 # echo "ip is $DEV_ENV_HOST_IP"
 
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    *=*)
-      varname="${1%%=*}"
-      value="${1#*=}"
-      export "$varname=$value"
-      ;;
-  esac
-  shift
-done
+# while [[ $# -gt 0 ]]; do
+#   case "$1" in
+#     *=*)
+#       varname="${1%%=*}"
+#       value="${1#*=}"
+#       export "$varname=$value"
+#       ;;
+#   esac
+#   shift
+# done
 
 dev_env_host_ip="$dev_env_host_ip"
 echo "ip is $dev_env_host_ip" 

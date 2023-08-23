@@ -18,7 +18,7 @@
 name: 'Set env variable for host'
 description: 'set env variable for host'
 inputs:
-  DEV_ENV_HOST_IP:
+  dev_env_host_ip:
     description: 'Host IP for the dev branch'
     required: false
 
