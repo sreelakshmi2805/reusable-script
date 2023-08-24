@@ -47,3 +47,4 @@ runs:
 
     - name: Format source code
       run: black  --line-length=88 .
+      shell: bash
