@@ -1,6 +1,6 @@
 # #!/bin/sh -l
 
-echo "Goodbye"
+# echo "Goodbye"
 
 # CI_COMMIT_BRANCH="$CI_COMMIT_BRANCH"
 # DEV_ENV_HOST_IP="$DEV_ENV_HOST_IP"

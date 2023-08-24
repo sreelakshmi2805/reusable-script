@@ -131,24 +131,37 @@ runs:
   using: 'composite'
   steps:
     - name: Install Python Packages
-      run: python -m pip install --upgrade pip ${{ inputs.python_packages }}
+      run: |
+        if [ -n "${{ inputs.python_packages }}" ]; then
+          python -m pip install --upgrade pip ${{ inputs.python_packages }}
+        fi
       shell: bash
 
     - name: Install APT Packages
       run: |
-        sudo apt-get update
-        sudo apt-get install -y ${{ inputs.apt_packages }}
+        if [ -n "${{ inputs.apt_packages }}" ]; then
+          sudo apt-get update
+          sudo apt-get install -y ${{ inputs.apt_packages }}
+        fi
       shell: bash
 
     - name: Install NPM Packages
-      run: npm install -g ${{ inputs.npm_packages }}
+      run: |
+        if [ -n "${{ inputs.npm_packages }}" ]; then
+          npm install -g ${{ inputs.npm_packages }}
+        fi
       shell: bash
 
     - name: Install Python Requirements
-      run: pip install -r ${{ inputs.requirements_file }}
+      run: |
+        if [ -n "${{ inputs.requirements_file }}" ]; then
+          pip install -r ${{ inputs.requirements_file }}
+        fi
       shell: bash
     
-    - name: Install Python Requirements
+    - name: Install Test Requirements
       run: |
-        pip install -r ${{ inputs.test_requirements_file }}
+        if [ -n "${{ inputs.test_requirements_file }}" ]; then
+          pip install -r ${{ inputs.test_requirements_file }}
+        fi
       shell: bash
