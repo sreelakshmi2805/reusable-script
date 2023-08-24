@@ -1,0 +1,49 @@
+name: "Validation"
+
+description: "Validation"
+
+inputs:
+  SSH_PRIVATE_KEY:
+    description: SSH PRIVATE KEY
+    required: false
+
+  python_packages:
+    description: "python packages"
+    required: false
+
+  apt_packages:
+    description: "apt- get packages"
+    required: false
+    default: "./docsrc/_build/html/"
+
+  python-version:
+    description: "Python version"
+    required: false
+    default: "3.10"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure SSH
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+          ssh-private-key: ${{ inputs.SSH_PRIVATE_KEY }}
+
+    - name: Set up Python ${{ inputs.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.5.1
+
+    - name: Install dependencies
+      uses: otosense/ci-script-intstall-packages@v1
+      with:
+        python_packages: ${{ inputs.python_packages }}
+        apt_packages: ${{ inputs.apt_packages }}
+
+    - name: Format source code
+      run: black  --line-length=88 .
